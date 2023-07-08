@@ -1,0 +1,43 @@
+.header{
+    position: fixed;
+    height: 100px;
+    width: 100%;
+    background-color: rgba(255,66,79,255);
+    z-index: 1;
+}
+.tabBar{
+    height: 80px;
+    background-color: #222b31;
+    width: 100%;
+    position: fixed;
+    top: 100px;
+    left: 0;
+
+}
+.labelTab{
+    font-size: 1.5rem;
+    width: 200px;
+    font-family: math;
+    height: 40px;
+    color: white;
+}
+.parentTab{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.labelTab:focus{
+    background-color: white;
+    color: black;
+    height: 100px;
+}
+.focusTab{
+    background-color: white;
+    color: black;
+    height: 100px;
+}
+.headerLabel {
+    top: 20%;
+    position: relative;
+    font-size: 3rem;
+}
