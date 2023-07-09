@@ -4,11 +4,11 @@ import { call, put,all, takeLatest } from 'redux-saga/effects';
 import { getGenreList } from '../api/sdk';
 import { fetchGenreList } from './action';
 import { FETCH_GENRELIST_SUCCESS, FETCH_GENRELIST_ERROR, FETCH_GENRELIST } from './action';
-import { genreModal } from '../modals/Modals';
+import { GenreModal } from '../modals/Modals';
 
 function* fetchMoviesSaga() {
   try {
-    const data: genreModal[]= yield call(getGenreList); 
+    const data: GenreModal[]= yield call(getGenreList); 
         yield put(fetchGenreList(FETCH_GENRELIST_SUCCESS, data));
     } catch (error : any) {
     yield put(fetchGenreList(FETCH_GENRELIST_ERROR, error?.message));

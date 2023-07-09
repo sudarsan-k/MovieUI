@@ -11,7 +11,7 @@
     width: 100%;
     position: fixed;
     top: 100px;
-    left: 0;
+    left: 0;z-index: 1;
 
 }
 .labelTab{
@@ -26,18 +26,65 @@
     justify-content: center;
     margin-top: 2rem;
 }
-.labelTab:focus{
-    background-color: white;
+.labelTab:hover{
+    background-color: rgba(255,66,79,255);
     color: black;
-    height: 100px;
+    height: 40px;
+}
+.labelTab:focus{
+    /* background-color: white;
+    color: black;
+    height: 48px; */
+    border-bottom: 0.5rem solid rgba(255,66,79,255);
 }
 .focusTab{
-    background-color: white;
+
+    border-bottom: 0.5rem solid rgba(255,66,79,255);
+    /* background-color: white;
     color: black;
-    height: 100px;
+    height: 48px; */
 }
 .headerLabel {
     top: 20%;
     position: relative;
     font-size: 3rem;
+}
+.card{
+    width: 375px;
+    height: 400px;
+    box-shadow: 0 4px 8px 0 rgba(242, 242, 242, 0.2);
+    transition: 0.3s;
+    padding: 1rem;
+    border: 1px solid rgba(255,66,79,255);
+    border-radius: 1rem;
+    margin-top: 2rem;
+}
+.card:hover {
+    box-shadow: 0 4px 16px 16px rgba(242, 242, 242, 0.2);
+  }
+.imageScreen{
+    width: 100%;
+    height: 150px;
+}
+.fontStyles{
+    font-family: math;
+    color: white;
+
+}
+.cardParent{
+    display: flex;
+    top:180px;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: #222b31;
+}
+.contentCard{
+    width: 100%;
+    height: 150px;
+}
+.voteDiv{
+
+    display: flex;
+    justify-content: space-around;
 }
