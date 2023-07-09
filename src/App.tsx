@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import './App.css';
 import { useEffect } from 'react';
 import Home from './components/Home';
+import MovieDetails from './components/MovieDetails';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getGenreListSelector } from './redux/selector'
@@ -21,6 +22,7 @@ function App(props: AppProps) {
       <div>
         <Routes>
           <Route path="/" Component={Home} />
+          <Route path='/moviedetail/:id' Component={MovieDetails} />
 
           {/* <Route path="/task2"> */}
           {/* <Task2 /> */}

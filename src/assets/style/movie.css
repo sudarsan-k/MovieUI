@@ -1,0 +1,63 @@
+
+.labelTabMovie{
+    font-size: 2rem;
+    width: 200px;
+    font-family: math;
+    height: 40px;
+    color: white;
+}
+.parentTabMovie{
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.contentMoiveCard{
+    width: 100%;
+    height: 100%;
+    filter: blur(8px);
+    position: fixed;
+}
+.movieImage{
+
+    width: 40%;
+    height: 350px;
+    right: 25%;
+    top: 40px;
+    position: relative;
+    border-radius: 1rem;
+}
+.headerMovie{
+    width: 40%;
+    position: relative;
+    left: 50%;
+    bottom: 350px;
+}
+.fontmovie{
+    font-size: 2.5rem;
+}
+
+.font{
+    display: flex;
+    justify-content: center;
+}
+.voteMovieDiv{
+    display: flex;
+    justify-content: space-evenly;
+}
+.movieMargin{
+    margin-top: -18rem;
+    margin-bottom: 5rem;
+}
+.buttonMovie{
+    width: 25%;
+    height: 40px;
+    font-size: 1.8rem;
+    font-family: math;
+    background-color: rgba(255,66,79,255);
+    color: white ;
+    border-radius: 0.5rem;
+    position: relative;
+    bottom: 45%;
+    right: 25%;
+}
