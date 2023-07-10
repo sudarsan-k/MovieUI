@@ -39,3 +39,6 @@
     left: 50px;
     top: 25px;
 }
+.buttonFav:hover {
+    box-shadow: 0 4px 8px 8px rgba(41, 41, 41, 0.2);
+}

@@ -1,10 +1,10 @@
-import React, { ChangeEventHandler } from 'react'
+import React from 'react'
 import "../assets/style/home.css"
 import "../assets/style/header.css"
 import "../assets/style/movie.css"
 import { useEffect, useState } from 'react'
-import { MovieList, LoadFn, TabList } from '../modals/Modals';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { MovieList, LoadFn } from '../modals/Modals';
+import { useNavigate } from 'react-router-dom';
 import "../assets/style/loader.css"
 export type MovieDetailsProps = {
     movieList: MovieList[];
@@ -16,7 +16,6 @@ export type MovieDetailsProps = {
 }
 const Header = (props: MovieDetailsProps | any) => {
     const navigate = useNavigate();
-    const location = useLocation();
     const [searchText, setSearchText] = useState<string>('')
     let timerId: ReturnType<typeof setTimeout>;
     useEffect(() => {
@@ -36,7 +35,9 @@ const Header = (props: MovieDetailsProps | any) => {
     return (
         <div>
             <div className='header'>
-                <button className='buttonFav'>Go To Favourites</button>
+                <button className='buttonFav' onClick={(e) => {
+                    navigate('/favourite')
+                }}>Go To Favourites</button>
                 <label className='labelTab headerLabel' onClick={(e) => {
                     navigate('/')
                 }}>Movie App</label>

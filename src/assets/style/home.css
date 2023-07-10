@@ -68,6 +68,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     background-color: #222b31;
+    min-height: 1000px;
 }
 .contentCard{
     width: 100%;

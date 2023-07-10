@@ -1,7 +1,7 @@
 import React from 'react'
 import "../assets/style/home.css"
-import { useEffect, useState } from 'react'
-import { MovieList, LoadFn, TabList } from '../modals/Modals';
+import { useEffect } from 'react'
+import { MovieList, LoadFn } from '../modals/Modals';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { tabData } from '../assets/common/Common';
 import "../assets/style/loader.css"
@@ -19,8 +19,6 @@ type MovieListProps = {
 const MovieListComponent = (props: MovieListProps) => {
     const { loading, loadDataHandler, movieList, tabIndex, pageIndex } = props
 
-    const [movieDetailFlag, setMovieDetailFlag] = useState<boolean>(false);
-    const [movieId, setMovieId] = useState<number>(0);
     const navigate = useNavigate();
 
     const handleScroll = () => {
@@ -30,15 +28,6 @@ const MovieListComponent = (props: MovieListProps) => {
         }
     };
 
-    // const cardHandler = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, data: MovieList) => {
-    //     if (tabIndex !== data.id) {
-    //         // setTabIndex(data.id);
-    //         // setPageIndex(1);
-    //         // loadDataHandler(data, pageIndex)
-    //         // setInitialFocus(false)
-    //         // window.scrollTo(0, 0);
-    //     }
-    // }
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
@@ -51,10 +40,7 @@ const MovieListComponent = (props: MovieListProps) => {
             {
                 movieList.map((data, index) => (
                     <div className='card' key={index} onClick={(e) => {
-                        setMovieId(data.id)
-                        setMovieDetailFlag(true)
                         navigate(`/movieDetail/${data.id}`, { state: { id: data.id } });
-
                     }}>
                         <LazyLoadImage src={`${imageURL}/${data.poster_path}`}
                             width="100%"

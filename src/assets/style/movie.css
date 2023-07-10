@@ -1,7 +1,7 @@
 
 .labelTabMovie{
     font-size: 2rem;
-    width: 200px;
+    width: 700px;
     font-family: math;
     height: 40px;
     color: white;
@@ -63,9 +63,15 @@
     bottom: 450px;
     right: 350px;
 }
+.buttonMovie:hover{
+    box-shadow: 0 4px 8px 8px rgba(242, 242, 242, 0.2);
+}
 .paddingLabel{
     padding: 0 1rem 0 1rem;
 }
 .paddingTop{
     padding-top:1rem ;
+}
+.backgroundButton{
+    background-color: lightseagreen;
 }

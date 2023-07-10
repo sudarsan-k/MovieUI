@@ -4,7 +4,6 @@ import "../assets/style/movie.css"
 import { useEffect, useState } from 'react'
 import { MovieList, LoadFn, TabList } from '../modals/Modals';
 import { useLocation } from 'react-router-dom';
-import { tabData } from '../assets/common/Common';
 import "../assets/style/loader.css";
 import { connect } from 'react-redux';
 import Header from '../components/Header';
@@ -24,7 +23,6 @@ export type MovieDetailsProps = {
 const SearchDetails = (props: MovieDetailsProps | any) => {
     const { getGenreList } = props;
     const location = useLocation();
-    const [initialFocus, setInitialFocus] = useState<boolean>(true);
     const [tabIndex, setTabIndex] = useState<number>(0);
     const [pageIndex, setPageIndex] = useState<number>(1);
     const [movieList, setMovieList] = useState<MovieList[]>([])
@@ -32,8 +30,9 @@ const SearchDetails = (props: MovieDetailsProps | any) => {
     const [loading, setLoading] = useState<boolean>(false);
 
     const loadDataHandler = (data: TabList | any, page: number) => {
-        if (getGenreList != 'Network Error') {
+        if (typeof getGenreList !== 'string') {
             setLoading(true)
+
             getSearchDetails(data, page).then((res: any) => {
                 let movies: MovieList[] = res.results;
                 for (let i: number = 0, len: number = movies.length; len > i; i++) {
@@ -63,6 +62,7 @@ const SearchDetails = (props: MovieDetailsProps | any) => {
         const query = location.state.search.searchText;
         if (query.length > 0 && getGenreList.length > 0) {
             loadDataHandler(query, pageIndex);
+            window.scrollTo(0, 0);
         }
     }, [getGenreList]);
 
@@ -71,7 +71,7 @@ const SearchDetails = (props: MovieDetailsProps | any) => {
             <Header />
             <div className='tabBar'>
                 <div className='parentTabMovie'>
-                    <label className='labelTabMovie'>Search Results</label>
+                    <label className='labelTabMovie'>Search Results for {location.state.search.searchText}</label>
                 </div>
             </div>
             <div >
@@ -85,7 +85,7 @@ const SearchDetails = (props: MovieDetailsProps | any) => {
                         pageIndex={pageIndex} />
                 ) : (
                     <div className='fontStyles cardParent'>
-                        <h1>{errorMessage}</h1>
+                        <h1>{errorMessage ? errorMessage : 'No Movie Found!!'}</h1>
                     </div>)
                 }
             </div>

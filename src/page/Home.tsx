@@ -24,7 +24,7 @@ const Home = (props: HomeProps) => {
     const [loading, setLoading] = useState<boolean>(false);
 
     const loadDataHandler = (data: TabList, page: number) => {
-        if (getGenreList != 'Network Error') {
+        if (typeof getGenreList !== 'string') {
             setLoading(true)
             getTabList(data.apiList, page).then((res: any) => {
                 let movies: MovieList[] = res.results;
@@ -58,6 +58,7 @@ const Home = (props: HomeProps) => {
     useEffect(() => {
         if (getGenreList.length > 0) {
             loadDataHandler(tabData[0], pageIndex);
+            window.scrollTo(0, 0);
         }
     }, [getGenreList]);
 
@@ -94,7 +95,7 @@ const Home = (props: HomeProps) => {
                         pageIndex={pageIndex} />
                 ) : (
                     <div className='fontStyles cardParent'>
-                        <h1>{errorMessage}</h1>
+                        <h1>{errorMessage ? errorMessage : 'No Movie Found!!'}</h1>
                     </div>)
                 }
             </div>

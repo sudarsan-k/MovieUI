@@ -2,17 +2,16 @@ import React from 'react'
 import "../assets/style/home.css"
 import "../assets/style/movie.css"
 import { useEffect, useState } from 'react'
-import { MovieList, LoadFn, TabList } from '../modals/Modals';
+import { MovieList, LoadFn } from '../modals/Modals';
 import { useLocation } from 'react-router-dom';
-import { tabData } from '../assets/common/Common';
 import "../assets/style/loader.css";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Header from '../components/Header';
 import { getMovieDetails } from '../api/sdk';
-import { getGenreListSelector } from '../redux/selector';
-import { GenreModal } from '../modals/Modals';
+import { getGenreListSelector, getFavouritesSelector } from '../redux/selector';
 import { imageURL } from '../api/index'
+import { updateFavourites } from '../redux/action';
 
 export type MovieDetailsProps = {
     movieList: MovieList[];
@@ -23,18 +22,20 @@ export type MovieDetailsProps = {
     pageIndex: number;
 }
 const MovieDetails = (props: MovieDetailsProps | any) => {
-    const { getGenreList } = props;
+    const { getGenreList, updateFavourites, getFavourites } = props;
     const location = useLocation();
     const [movieDetail, setMovieDetail] = useState<MovieList | any>({})
     const [errorMessage, setErrorMessage] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false);
     const [genreData, setGenreData] = useState<string>('');
-    const [languageData, setLanguageData] = useState<string>('')
+    const [languageData, setLanguageData] = useState<string>('');
+    const [buttonFlag, setButtonFlag] = useState<boolean>(false)
 
     useEffect(() => {
         let id = location.state.id;
         setLoading(true)
         if (id !== 0) {
+            window.scrollTo(0, 0);
             getMovieDetails(id).then((res: any) => {
                 let movies: MovieList = res;
                 let genre: string = "";
@@ -49,15 +50,6 @@ const MovieDetails = (props: MovieDetailsProps | any) => {
                 setLanguageData(language);
                 setGenreData(genre);
                 setMovieDetail(movies);
-
-                //         if (tabIndex !== data.id) {
-                //             setMovieList([...movies]);
-                //         } else {
-                //             if (page !== pageIndex) {
-                //                 setPageIndex(page);
-                //             }
-                //             setMovieList(prev => [...prev, ...movies]);
-                //         }
                 setErrorMessage('')
                 setLoading(false)
             }).catch((e: any) => {
@@ -67,8 +59,20 @@ const MovieDetails = (props: MovieDetailsProps | any) => {
         } else {
             setErrorMessage(getGenreList);
         }
-
     }, []);
+
+    useEffect(() => {
+        if (getFavourites.length !== 0 && getFavourites.find((x: MovieList) => x.id === movieDetail.id)) {
+            setButtonFlag(true);
+        }
+    }, [getFavourites, movieDetail])
+
+
+    const favouriteHandler = () => {
+        if (getFavourites.length === 0 || !getFavourites.find((x: MovieList) => x.id === movieDetail.id)) {
+            updateFavourites(movieDetail);
+        }
+    }
 
     return (
         <div>
@@ -79,7 +83,7 @@ const MovieDetails = (props: MovieDetailsProps | any) => {
                 </div>
             </div>
             <div >
-                {Object.entries(movieDetail).length > 0 &&
+                {Object.entries(movieDetail).length > 0 ? (
                     <div className='cardParent' id='cardParent'>
                         <div style={{ backgroundImage: `url(${imageURL}${movieDetail.backdrop_path})` }} className='contentMoiveCard' />
                         <div>
@@ -126,9 +130,15 @@ const MovieDetails = (props: MovieDetailsProps | any) => {
                             </div>
                             <div className='contentMoiveCard fontStyles movieMargin'>
                             </div>
-                            <button className='buttonMovie'>Add To Favourites</button>
+                            <button className={`buttonMovie ${buttonFlag ? 'backgroundButton' : ''}`} onClick={favouriteHandler}> {buttonFlag ? 'Added To Favourites' : 'Add To Favourites'}</button>
                         </div>
-                    </div>}
+                    </div>) : (
+                    <div className='fontStyles cardParent'>
+                        <h1>{errorMessage}</h1>
+                    </div>
+
+                )}
+                {loading && <div className="loader centreLoader"></div>}
             </div>
         </div >
     )
@@ -136,13 +146,15 @@ const MovieDetails = (props: MovieDetailsProps | any) => {
 function mapStateToProps(state: any) {
     return {
         getGenreList: getGenreListSelector(state),
+        getFavourites: getFavouritesSelector(state)
     };
 }
 function mapDispatchToProps(dispatch: any) {
     return bindActionCreators(
         {
+            updateFavourites
         },
         dispatch
     );
 }
-export default connect(mapStateToProps)(MovieDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);

@@ -8,7 +8,10 @@
     position: fixed;
     top: 50%;
   }
-  
+  .centreLoader{
+    right: 45%;
+  }
+
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
