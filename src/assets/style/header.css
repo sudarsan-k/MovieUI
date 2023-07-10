@@ -1,0 +1,41 @@
+.inputDiv{    
+    margin-left: 950px;
+    position: relative;
+    bottom: 30px;
+}
+.header{
+    position: fixed;
+    height: 100px;
+    width: 100%;
+    background-color: rgba(255,66,79,255);
+    z-index: 1;
+}
+
+.headerLabel {
+    top: 20%;
+    position: relative;
+    font-size: 3rem;
+}
+.inputText{
+    width: 300px;
+    height: 40px;
+    border-radius: 0.5rem;
+    background-color: #222b31;
+    border: 0.2rem solid white;
+    font-family: math;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.buttonFav{
+    width: 300px;
+    height: 50px;
+    font-size: 1.8rem;
+    font-family: math;
+    background-color: rgba(255,66,79,255);
+    color: white ;
+    border-radius: 0.5rem;
+    position: fixed;
+    left: 50px;
+    top: 25px;
+}

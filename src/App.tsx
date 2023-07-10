@@ -3,13 +3,14 @@ import React from 'react';
 import { Routes, Route } from "react-router-dom";
 import './App.css';
 import { useEffect } from 'react';
-import Home from './components/Home';
-import MovieDetails from './components/MovieDetails';
+import Home from './page/Home';
+import MovieDetails from './page/MovieDetails';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getGenreListSelector } from './redux/selector'
 import { fetchGenre } from './redux/action';
 import { GenreModal } from './modals/Modals';
+import SearchDetails from './page/SearchDetails';
 export type AppProps = {
   fetchGenre: any,
 }
@@ -23,6 +24,7 @@ function App(props: AppProps) {
         <Routes>
           <Route path="/" Component={Home} />
           <Route path='/moviedetail/:id' Component={MovieDetails} />
+          <Route path='/search/:id' Component={SearchDetails} />
 
           {/* <Route path="/task2"> */}
           {/* <Task2 /> */}

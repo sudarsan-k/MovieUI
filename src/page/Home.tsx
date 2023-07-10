@@ -3,12 +3,11 @@ import "../assets/style/home.css"
 import { tabData } from '../assets/common/Common'
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { getGenreListSelector } from '../redux/selector'
 import { GenreModal, TabList, MovieList } from '../modals/Modals';
 import { getTabList } from '../api/sdk';
-import MovieListComponent from './MovieListComponent';
-import Header from './Header';
+import MovieListComponent from '../components/MovieListComponent';
+import Header from '../components/Header';
 
 export type HomeProps = {
     getGenreList: GenreModal[] | any
@@ -58,7 +57,6 @@ const Home = (props: HomeProps) => {
     }
     useEffect(() => {
         if (getGenreList.length > 0) {
-            console.log(getGenreList)
             loadDataHandler(tabData[0], pageIndex);
         }
     }, [getGenreList]);
@@ -110,12 +108,4 @@ function mapStateToProps(state: any) {
         getGenreList: getGenreListSelector(state),
     };
 }
-function mapDispatchToProps(dispatch: any) {
-    return bindActionCreators(
-        {
-
-        },
-        dispatch
-    );
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);

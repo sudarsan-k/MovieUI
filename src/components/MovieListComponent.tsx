@@ -60,7 +60,6 @@ const MovieListComponent = (props: MovieListProps) => {
                             width="100%"
                             height={'150px'}
                             className='imageScreen'
-                            placeholderSrc={`${imageURL}/${data.backdrop_path}`}
                             alt="Image Alt"
                         />
                         <div className='contentCard fontStyles'>

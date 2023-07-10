@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import {movieURL, AUTH_TOKEN, genreURL} from './index'
+import {movieURL, AUTH_TOKEN, genreURL, searchURL} from './index'
 import { GenreModal, MovieList } from "../modals/Modals";
 
   export const getGenreList = async(): Promise<GenreModal[]>  => {
@@ -14,5 +14,10 @@ import { GenreModal, MovieList } from "../modals/Modals";
 
   export const getTabList = async(apiName: string,page: number): Promise<MovieList[]>  => {
     const response: AxiosResponse<MovieList[]> = await axios.get<MovieList[]>(`${movieURL}/${apiName}?page=${page}&api_key=${AUTH_TOKEN}` );
+    return response.data;
+};
+
+export const getSearchDetails = async(search: string, page: number): Promise<any>  => {
+    const response: AxiosResponse<any> = await axios.get<any>(`${searchURL}?query=${search}&page=${page}&api_key=${AUTH_TOKEN}` );
     return response.data;
 };

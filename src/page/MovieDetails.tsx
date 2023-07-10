@@ -8,7 +8,7 @@ import { tabData } from '../assets/common/Common';
 import "../assets/style/loader.css";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Header from './Header';
+import Header from '../components/Header';
 import { getMovieDetails } from '../api/sdk';
 import { getGenreListSelector } from '../redux/selector';
 import { GenreModal } from '../modals/Modals';
@@ -88,9 +88,9 @@ const MovieDetails = (props: MovieDetailsProps | any) => {
                                 alt="Image Alt"
                             />
                             <div className='fontStyles headerMovie '>
-                                <h1 className='fontmovie'> {movieDetail.title}</h1>
-                                <h2>{movieDetail.tagline}</h2>
-                                <h3>{movieDetail.overview}</h3>
+                                <h1 className='fontmovie paddingLabel paddingTop'> {movieDetail.title}</h1>
+                                <h2 className='paddingLabel'>{movieDetail.tagline}</h2>
+                                <h3 className='paddingLabel'>{movieDetail.overview}</h3>
                                 <div className='font'>
                                     <h3>Genre - &nbsp;</h3>
                                     <h3>{genreData}</h3>
@@ -126,7 +126,6 @@ const MovieDetails = (props: MovieDetailsProps | any) => {
                             </div>
                             <div className='contentMoiveCard fontStyles movieMargin'>
                             </div>
-
                             <button className='buttonMovie'>Add To Favourites</button>
                         </div>
                     </div>}
