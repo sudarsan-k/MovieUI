@@ -16,6 +16,8 @@ function Router(props: AppProps) {
           <Route path="/" Component={Home} />
           <Route path='/moviedetail/:id' Component={MovieDetails} />
           <Route path='/search/:id' Component={SearchDetails} />
+
+          <Route path='/search/' Component={SearchDetails} />
           <Route path='/favourite' Component={FavouriteDetails} />
         </Routes>
       </div>

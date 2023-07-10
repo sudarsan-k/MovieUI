@@ -28,8 +28,7 @@ const SearchDetails = (props: MovieDetailsProps | any) => {
     const [movieList, setMovieList] = useState<MovieList[]>([])
     const [errorMessage, setErrorMessage] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false);
-
-    const loadDataHandler = (data: TabList | any, page: number) => {
+    const loadDataHandler = (data: TabList | any, page: number, search: boolean = true) => {
         if (typeof getGenreList !== 'string') {
             setLoading(true)
 
@@ -44,10 +43,14 @@ const SearchDetails = (props: MovieDetailsProps | any) => {
                         }
                     }
                 }
-                if (page !== pageIndex) {
-                    setPageIndex(page);
+
+                setPageIndex(page);
+                if (page > pageIndex) {
+                    setMovieList(prev => [...prev, ...movies]);
                 }
-                setMovieList(prev => [...prev, ...movies]);
+                else {
+                    setMovieList([...movies]);
+                }
                 setErrorMessage('')
                 setLoading(false)
             }).catch((e: any) => {
@@ -60,15 +63,15 @@ const SearchDetails = (props: MovieDetailsProps | any) => {
     }
     useEffect(() => {
         const query = location.state.search.searchText;
-        if (query.length > 0 && getGenreList.length > 0) {
-            loadDataHandler(query, pageIndex);
+        if (getGenreList.length > 0) {
+            loadDataHandler(query, 1, true);
             window.scrollTo(0, 0);
         }
-    }, [getGenreList]);
+    }, [getGenreList, location.state.search.searchText]);
 
     return (
         <div>
-            <Header />
+            <Header searchedText={location.state.search.searchText} />
             <div className='tabBar'>
                 <div className='parentTabMovie'>
                     <label className='labelTabMovie'>Search Results for {location.state.search.searchText}</label>
@@ -82,10 +85,11 @@ const SearchDetails = (props: MovieDetailsProps | any) => {
                         loading={loading}
                         tabIndex={tabIndex}
                         setPageIndex={setPageIndex}
-                        pageIndex={pageIndex} />
+                        pageIndex={pageIndex}
+                        searchFlag={true} />
                 ) : (
                     <div className='fontStyles cardParent'>
-                        <h1>{errorMessage ? errorMessage : 'No Movie Found!!'}</h1>
+                        <h1>{errorMessage ? errorMessage : location.state.search.searchText == '' ? 'Please search Something!!' : 'No Movie Found!!'}</h1>
                     </div>)
                 }
             </div>

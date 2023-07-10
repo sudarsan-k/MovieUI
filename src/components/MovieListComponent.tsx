@@ -5,7 +5,7 @@ import { MovieList, LoadFn } from '../modals/Modals';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { tabData } from '../assets/common/Common';
 import "../assets/style/loader.css"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { imageURL } from '../api/index'
 type MovieListProps = {
     movieList: MovieList[];
@@ -14,17 +14,25 @@ type MovieListProps = {
     tabIndex: number;
     setPageIndex: (value: number) => void;
     pageIndex: number;
+    searchFlag: boolean;
 }
 
 const MovieListComponent = (props: MovieListProps) => {
-    const { loading, loadDataHandler, movieList, tabIndex, pageIndex } = props
+    const { loading, loadDataHandler, movieList, tabIndex, pageIndex, searchFlag } = props
 
     const navigate = useNavigate();
-
+    const location = useLocation()
     const handleScroll = () => {
         const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
         if (scrollTop + clientHeight >= scrollHeight - 100 && !loading) {
-            loadDataHandler(tabData[tabIndex], (pageIndex + 1));
+            if (searchFlag) {
+                loadDataHandler(location.state.search.searchText, (pageIndex + 1));
+
+            }
+            else {
+                loadDataHandler(tabData[tabIndex], (pageIndex + 1));
+
+            }
         }
     };
 

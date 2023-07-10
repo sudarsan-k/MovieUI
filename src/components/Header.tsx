@@ -6,29 +6,26 @@ import { useEffect, useState } from 'react'
 import { MovieList, LoadFn } from '../modals/Modals';
 import { useNavigate } from 'react-router-dom';
 import "../assets/style/loader.css"
-export type MovieDetailsProps = {
-    movieList: MovieList[];
-    loadDataHandler: LoadFn;
-    loading: boolean;
-    tabIndex: number;
-    setPageIndex: (value: number) => void;
-    pageIndex: number;
+export type HeaderProps = {
 }
-const Header = (props: MovieDetailsProps | any) => {
+const Header = (props: HeaderProps | any) => {
     const navigate = useNavigate();
     const [searchText, setSearchText] = useState<string>('')
+    const [testFlag, setTestFlag] = useState<boolean>(false)
     let timerId: ReturnType<typeof setTimeout>;
     useEffect(() => {
-        if (searchText.length > 0) {
+        if (testFlag) {
             navigate(`/search/${searchText}`, { state: { search: { searchText } } });
+            setTestFlag(false);
         }
     }, [searchText]);
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         clearTimeout(timerId);
         timerId = setTimeout(() => {
-            setSearchText(e.target.value)
-            console.log(e.target.value)
+            setSearchText(e.target.value);
+            setTestFlag(true)
+
         }, 400)
 
     }
@@ -42,7 +39,7 @@ const Header = (props: MovieDetailsProps | any) => {
                     navigate('/')
                 }}>Movie App</label>
                 <div className='inputDiv'>
-                    <input type="text" className='inputText' onChange={changeHandler} placeholder="    Search.." name="search" />
+                    <input type="search" className='inputText' onChange={changeHandler} placeholder="    Search.." name="search" />
                 </div>
             </div>
         </div >

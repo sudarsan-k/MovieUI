@@ -92,7 +92,8 @@ const Home = (props: HomeProps) => {
                         loading={loading}
                         tabIndex={tabIndex}
                         setPageIndex={setPageIndex}
-                        pageIndex={pageIndex} />
+                        pageIndex={pageIndex}
+                        searchFlag={false} />
                 ) : (
                     <div className='fontStyles cardParent'>
                         <h1>{errorMessage ? errorMessage : 'No Movie Found!!'}</h1>
