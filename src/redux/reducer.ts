@@ -1,6 +1,6 @@
 // reducer.ts
 import { initialState } from "./state";
-import { FETCH_GENRELIST_SUCCESS, FETCH_GENRELIST_ERROR, UPDATE_FAVOURITES } from "./action";
+import { FETCH_GENRELIST_SUCCESS, FETCH_GENRELIST_ERROR, UPDATE_FAVOURITES, REMOVE_FAVOURITES } from "./action";
   
   const movieReducer = (state = initialState, action: any) => {
     switch (action.type) {
@@ -19,6 +19,11 @@ import { FETCH_GENRELIST_SUCCESS, FETCH_GENRELIST_ERROR, UPDATE_FAVOURITES } fro
           ...state,
           favourites: [...state.favourites, action.payload],
         };
+        case REMOVE_FAVOURITES:
+            return {
+                ...state,
+                favourites: [ ...action.payload],
+            }
       default:
         return state;
     }

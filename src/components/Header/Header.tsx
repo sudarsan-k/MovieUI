@@ -1,11 +1,11 @@
 import React from 'react'
-import "../assets/style/home.css"
-import "../assets/style/header.css"
-import "../assets/style/movie.css"
+import "../../assets/style/home.css"
+import "../../assets/style/header.css"
+import "../../assets/style/movie.css"
 import { useEffect, useState } from 'react'
-import { MovieList, LoadFn } from '../modals/Modals';
+import { MovieList, LoadFn } from '../../modals/Modals';
 import { useNavigate } from 'react-router-dom';
-import "../assets/style/loader.css"
+import "../../assets/style/loader.css"
 export type HeaderProps = {
 }
 const Header = (props: HeaderProps | any) => {

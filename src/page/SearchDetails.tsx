@@ -6,11 +6,12 @@ import { MovieList, LoadFn, TabList } from '../modals/Modals';
 import { useLocation } from 'react-router-dom';
 import "../assets/style/loader.css";
 import { connect } from 'react-redux';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import { getGenreListSelector } from '../redux/selector';
 import { GenreModal } from '../modals/Modals';
-import MovieListComponent from '../components/MovieListComponent';
+import MovieListComponent from '../components/MovieList/MovieListComponent';
 import { getSearchDetails } from '../api/sdk';
+import ErrorComponent from '../components/ErrorComponent/ErrorComponent';
 
 export type MovieDetailsProps = {
     movieList: MovieList[];
@@ -51,7 +52,12 @@ const SearchDetails = (props: MovieDetailsProps | any) => {
                 else {
                     setMovieList([...movies]);
                 }
-                setErrorMessage('')
+                if (movies.length === 0) {
+                    setErrorMessage('No Movie Found!!')
+                }
+                else {
+                    setErrorMessage('')
+                }
                 setLoading(false)
             }).catch((e: any) => {
                 setErrorMessage(e?.message);
@@ -88,12 +94,10 @@ const SearchDetails = (props: MovieDetailsProps | any) => {
                         pageIndex={pageIndex}
                         searchFlag={true} />
                 ) : (
-                    <div className='fontStyles cardParent'>
-                        <h1>{errorMessage ? errorMessage : location.state.search.searchText == '' ? 'Please search Something!!' : 'No Movie Found!!'}</h1>
-                    </div>)
+                    <ErrorComponent errorMessage={location.state.search.searchText === '' ? 'Please search Something!!' : errorMessage} />
+                )
                 }
             </div>
-
         </div>
     )
 }

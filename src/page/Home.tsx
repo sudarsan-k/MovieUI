@@ -6,9 +6,9 @@ import { connect } from 'react-redux';
 import { getGenreListSelector } from '../redux/selector'
 import { GenreModal, TabList, MovieList } from '../modals/Modals';
 import { getTabList } from '../api/sdk';
-import MovieListComponent from '../components/MovieListComponent';
-import Header from '../components/Header';
-
+import MovieListComponent from '../components/MovieList/MovieListComponent';
+import Header from '../components/Header/Header';
+import ErrorComponent from '../components/ErrorComponent/ErrorComponent';
 export type HomeProps = {
     getGenreList: GenreModal[] | any
 }
@@ -95,10 +95,8 @@ const Home = (props: HomeProps) => {
                         pageIndex={pageIndex}
                         searchFlag={false} />
                 ) : (
-                    <div className='fontStyles cardParent'>
-                        <h1>{errorMessage ? errorMessage : 'No Movie Found!!'}</h1>
-                    </div>)
-                }
+                    <ErrorComponent errorMessage={errorMessage ? errorMessage : 'No Movie Found!!'} />
+                )}
             </div>
 
         </div>

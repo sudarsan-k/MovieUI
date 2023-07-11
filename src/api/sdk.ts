@@ -1,4 +1,5 @@
-import axios, { AxiosResponse } from "axios";
+import {AxiosResponse } from "axios";
+import axios from "axios";
 import {movieURL, AUTH_TOKEN, genreURL, searchURL} from './index'
 import { GenreModal, MovieList } from "../modals/Modals";
 

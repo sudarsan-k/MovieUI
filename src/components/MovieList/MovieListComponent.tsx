@@ -1,12 +1,12 @@
 import React from 'react'
-import "../assets/style/home.css"
+import "../../assets/style/home.css"
 import { useEffect } from 'react'
-import { MovieList, LoadFn } from '../modals/Modals';
+import { MovieList, LoadFn } from '../../modals/Modals';
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { tabData } from '../assets/common/Common';
-import "../assets/style/loader.css"
+import { tabData } from '../../assets/common/Common';
+import "../../assets/style/loader.css"
 import { useNavigate, useLocation } from 'react-router-dom';
-import { imageURL } from '../api/index'
+import { imageURL } from '../../api/index'
 type MovieListProps = {
     movieList: MovieList[];
     loadDataHandler: LoadFn;

@@ -7,11 +7,13 @@ import { useLocation } from 'react-router-dom';
 import "../assets/style/loader.css";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import { getMovieDetails } from '../api/sdk';
 import { getGenreListSelector, getFavouritesSelector } from '../redux/selector';
 import { imageURL } from '../api/index'
-import { updateFavourites } from '../redux/action';
+import { updateFavourites, removeFavourites } from '../redux/action';
+import MovieDetailComponent from '../components/MovieDetails/MovieDetailComponent';
+import ErrorComponent from '../components/ErrorComponent/ErrorComponent';
 
 export type MovieDetailsProps = {
     movieList: MovieList[];
@@ -22,7 +24,7 @@ export type MovieDetailsProps = {
     pageIndex: number;
 }
 const MovieDetails = (props: MovieDetailsProps | any) => {
-    const { getGenreList, updateFavourites, getFavourites } = props;
+    const { getGenreList, updateFavourites, getFavourites, removeFavourites } = props;
     const location = useLocation();
     const [movieDetail, setMovieDetail] = useState<MovieList | any>({})
     const [errorMessage, setErrorMessage] = useState<string>('')
@@ -72,6 +74,12 @@ const MovieDetails = (props: MovieDetailsProps | any) => {
         if (getFavourites.length === 0 || !getFavourites.find((x: MovieList) => x.id === movieDetail.id)) {
             updateFavourites(movieDetail);
         }
+        else if (buttonFlag && getFavourites.find((x: MovieList) => x.id === movieDetail.id)) {
+            let favouriteList = getFavourites.filter((x: MovieList) => x.id !== movieDetail.id);
+            removeFavourites(favouriteList);
+            setButtonFlag(false)
+        }
+
     }
 
     return (
@@ -81,50 +89,15 @@ const MovieDetails = (props: MovieDetailsProps | any) => {
                 {Object.entries(movieDetail).length > 0 ? (
                     <div className='parentCard'>
                         <div style={{ backgroundImage: `url(${imageURL}${movieDetail.backdrop_path})` }} className='contentMoiveCard' />
-
-                        <div className='parentFlex'>
-                            <img src={`${imageURL}/${movieDetail.poster_path}`}
-                                className='movieImage'
-                                alt="Image Alt"
-                            />
-                            <div className='fontStyles cardContent textAlign'>
-                                <h1 className='h1tag'> {movieDetail.title}</h1>
-                                <label className='marginLabel taglabel'>{movieDetail.overview}</label>
-                                <div className='font marginBottom'>
-                                    <h3>Genre - &nbsp;</h3>
-                                    <h3>{genreData}</h3>
-                                </div>
-                                <div className='font marginBottom'>
-                                    <h3>Language - &nbsp;</h3>
-                                    <h3>{languageData}</h3>
-                                </div>
-                                <div className='font marginBottom'>
-                                    <h3>Status - &nbsp;</h3>
-                                    <h3>{movieDetail.status}</h3>
-                                </div>
-                                <div className='font marginBottom'>
-                                    <h3>Release Data -  &nbsp;</h3>
-                                    <h3>{movieDetail.release_date}</h3>
-                                </div>
-
-                                <div className='font marginBottom'>
-                                    <h3>Voter Average - &nbsp;</h3>
-                                    <h3>{movieDetail.vote_average}</h3>
-                                </div>
-                                <div className='font marginBottom'>
-                                    <h3>Voter Count - &nbsp;</h3>
-                                    <h3>{movieDetail.vote_count}</h3>
-                                </div>
-                                <div className='font justify '>
-                                    <button className={`buttonMovie movieMargin  ${buttonFlag ? 'backgroundButton' : ''}`} onClick={favouriteHandler}> {buttonFlag ? 'Added To Favourites' : 'Add To Favourites'}</button>
-                                </div>
-                            </div>
-                        </div>
+                        <MovieDetailComponent
+                            favouriteHandler={favouriteHandler}
+                            movieDetail={movieDetail}
+                            genreData={genreData}
+                            languageData={languageData}
+                            buttonFlag={buttonFlag}
+                        />
                     </div>) : (
-                    <div className='fontStyles cardParent'>
-                        <h1>{errorMessage}</h1>
-                    </div>
-
+                    <ErrorComponent errorMessage={errorMessage} />
                 )}
                 {loading && <div className="loader centreLoader"></div>}
             </div>
@@ -140,7 +113,8 @@ function mapStateToProps(state: any) {
 function mapDispatchToProps(dispatch: any) {
     return bindActionCreators(
         {
-            updateFavourites
+            updateFavourites,
+            removeFavourites
         },
         dispatch
     );

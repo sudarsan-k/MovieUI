@@ -5,9 +5,10 @@ import { useEffect, useState } from 'react'
 import { MovieList } from '../modals/Modals';
 import "../assets/style/loader.css";
 import { connect } from 'react-redux';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import { getFavouritesSelector } from '../redux/selector';
-import MovieListComponent from '../components/MovieListComponent';
+import MovieListComponent from '../components/MovieList/MovieListComponent';
+import ErrorComponent from '../components/ErrorComponent/ErrorComponent';
 
 export type MovieDetailsProps = {
     getFavouriteList: MovieList[];
@@ -63,9 +64,8 @@ const FavouriteDetails = (props: MovieDetailsProps | any) => {
                         pageIndex={pageIndex}
                         searchFlag={false} />
                 ) : (
-                    <div className='fontStyles cardParent'>
-                        <h1>No Movie Found</h1>
-                    </div>)
+                    <ErrorComponent errorMessage='No Movie Found' />
+                )
                 }
             </div>
 

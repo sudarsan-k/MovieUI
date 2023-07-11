@@ -22,7 +22,7 @@
     border-radius: 0.5rem;
     background-color: #222b31;
     border: none;
-    font-family: math;
+    font-family: sans-serif;
     color: white;
     font-size: 1.2rem;
     outline: none;
@@ -32,10 +32,10 @@
 }
 
 .buttonFav{
-    width: 300px;
-    height: 50px;
-    font-size: 1.8rem;
-    font-family: math;
+    width: 250px;
+    height: 45px;
+    font-size: 1.6rem;
+    font-family: sans-serif;
     background-color: #222128;
     color: white ;
     border-radius: 0.5rem;
