@@ -52,7 +52,7 @@ const FavouriteDetails = (props: MovieDetailsProps | any) => {
                     <label className='labelTabMovie'>Favourite Movies</label>
                 </div>
             </div>
-            <div >
+            <div className='backroundParent'>
                 {movieList.length > 0 && errorMessage.length == 0 ? (
                     <MovieListComponent
                         movieList={movieList}

@@ -66,7 +66,7 @@ const Home = (props: HomeProps) => {
         if (tabIndex !== data.id) {
             setTabIndex(data.id);
             setPageIndex(1);
-            loadDataHandler(data, pageIndex)
+            loadDataHandler(data, 1)
             setInitialFocus(false)
             window.scrollTo(0, 0);
         }
@@ -84,7 +84,7 @@ const Home = (props: HomeProps) => {
                     }
                 </div>
             </div>
-            <div >
+            <div className='backroundParent'>
                 {movieList.length > 0 && errorMessage.length == 0 ? (
                     <MovieListComponent
                         movieList={movieList}

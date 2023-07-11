@@ -19,13 +19,10 @@
     position: fixed;
 }
 .movieImage{
-
     width: 400px;
-    height: 350px;
-    right: 350px;
-    top: 40px;
+    height: 600px;
     position: relative;
-    border-radius: 1rem;
+    border-radius: 1rem 0 0 1rem;
 }
 .headerMovie{
     width: 700px;
@@ -41,6 +38,8 @@
 
 .font{
     display: flex;
+}
+.justify{
     justify-content: center;
 }
 .voteMovieDiv{
@@ -48,21 +47,34 @@
     justify-content: space-evenly;
 }
 .movieMargin{
-    margin-top: -18rem;
-    margin-bottom: 5rem;
+    margin-bottom: 1rem;
+}
+.marginBottom{
+    margin-bottom: -0.5rem;
+}
+.parentCard{
+    display: flex;
+    top:100px;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: #222b31;
+    min-height: 1000px;
 }
 .buttonMovie{
     width: 300px;
     height: 40px;
     font-size: 1.8rem;
     font-family: math;
-    background-color: rgba(255,66,79,255);
+    background-color: rgb(21 20 20 / 20%);
     color: white ;
     border-radius: 0.5rem;
     position: relative;
-    bottom: 450px;
-    right: 350px;
+    box-shadow: 0px 1px 8px 4px rgba(242, 242, 242, 0.2);
+    border: none;
+    transition: 0.3s;
 }
+
 .buttonMovie:hover{
     box-shadow: 0 4px 8px 8px rgba(242, 242, 242, 0.2);
 }
@@ -73,5 +85,35 @@
     padding-top:1rem ;
 }
 .backgroundButton{
-    background-color: lightseagreen;
+    color: #00FC87;
+}
+.parentFlex{
+    width: 1200px;
+    height: 600px;
+    background: #222128;
+    position: relative;
+    display: flex;
+    top:50px;
+    border-radius: 1rem;
+    box-shadow: 0px 1px 8px 4px rgba(242, 242, 242, 0.2);
+}
+.cardContent{
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+}
+.textAlign{
+    text-align: start;
+}
+.h1tag{
+    margin-bottom: 1rem;
+}
+.taglabel{
+    font-size: 20px;
+    font-weight: 400;
+}
+.marginLabel{
+    margin: 1rem 0;
 }

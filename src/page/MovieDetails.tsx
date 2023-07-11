@@ -77,60 +77,48 @@ const MovieDetails = (props: MovieDetailsProps | any) => {
     return (
         <div>
             <Header />
-            <div className='tabBar'>
-                <div className='parentTabMovie'>
-                    <label className='labelTabMovie'>Movie Details</label>
-                </div>
-            </div>
             <div >
                 {Object.entries(movieDetail).length > 0 ? (
-                    <div className='cardParent' id='cardParent'>
+                    <div className='parentCard'>
                         <div style={{ backgroundImage: `url(${imageURL}${movieDetail.backdrop_path})` }} className='contentMoiveCard' />
-                        <div>
+
+                        <div className='parentFlex'>
                             <img src={`${imageURL}/${movieDetail.poster_path}`}
                                 className='movieImage'
                                 alt="Image Alt"
                             />
-                            <div className='fontStyles headerMovie '>
-                                <h1 className='fontmovie paddingLabel paddingTop'> {movieDetail.title}</h1>
-                                <h2 className='paddingLabel'>{movieDetail.tagline}</h2>
-                                <h3 className='paddingLabel'>{movieDetail.overview}</h3>
-                                <div className='font'>
+                            <div className='fontStyles cardContent textAlign'>
+                                <h1 className='h1tag'> {movieDetail.title}</h1>
+                                <label className='marginLabel taglabel'>{movieDetail.overview}</label>
+                                <div className='font marginBottom'>
                                     <h3>Genre - &nbsp;</h3>
                                     <h3>{genreData}</h3>
                                 </div>
-                                <div className='voteDiv'>
-                                    <div className='font'>
-                                        <h3>Language - &nbsp;</h3>
-                                        <h3>{languageData}</h3>
-                                    </div>
+                                <div className='font marginBottom'>
+                                    <h3>Language - &nbsp;</h3>
+                                    <h3>{languageData}</h3>
                                 </div>
-                                <div className='voteDiv'>
-                                    <div className='font'>
-                                        <h3>Status - &nbsp;</h3>
-                                        <h3>{movieDetail.status}</h3>
-                                    </div>
-                                    <div className='font'>
-                                        <h3>Release Data -  &nbsp;</h3>
-                                        <h3>{movieDetail.release_date}</h3>
-                                    </div>
-
+                                <div className='font marginBottom'>
+                                    <h3>Status - &nbsp;</h3>
+                                    <h3>{movieDetail.status}</h3>
+                                </div>
+                                <div className='font marginBottom'>
+                                    <h3>Release Data -  &nbsp;</h3>
+                                    <h3>{movieDetail.release_date}</h3>
                                 </div>
 
-                                <div className='voteMovieDiv'>
-                                    <div >
-                                        <h3>Voter Average</h3>
-                                        <h3>{movieDetail.vote_average}</h3>
-                                    </div>
-                                    <div>
-                                        <h3>Voter Count</h3>
-                                        <h3>{movieDetail.vote_count}</h3>
-                                    </div>
+                                <div className='font marginBottom'>
+                                    <h3>Voter Average - &nbsp;</h3>
+                                    <h3>{movieDetail.vote_average}</h3>
+                                </div>
+                                <div className='font marginBottom'>
+                                    <h3>Voter Count - &nbsp;</h3>
+                                    <h3>{movieDetail.vote_count}</h3>
+                                </div>
+                                <div className='font justify '>
+                                    <button className={`buttonMovie movieMargin  ${buttonFlag ? 'backgroundButton' : ''}`} onClick={favouriteHandler}> {buttonFlag ? 'Added To Favourites' : 'Add To Favourites'}</button>
                                 </div>
                             </div>
-                            <div className='contentMoiveCard fontStyles movieMargin'>
-                            </div>
-                            <button className={`buttonMovie ${buttonFlag ? 'backgroundButton' : ''}`} onClick={favouriteHandler}> {buttonFlag ? 'Added To Favourites' : 'Add To Favourites'}</button>
                         </div>
                     </div>) : (
                     <div className='fontStyles cardParent'>

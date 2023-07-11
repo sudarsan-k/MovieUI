@@ -5,14 +5,19 @@ import './App.css';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { GenreModal } from './modals/Modals';
 import { fetchGenre } from './redux/action';
 import Router from './Router';
+import { getGenreListSelector } from './redux/selector';
 export type AppProps = {
     fetchGenre: any,
+    getGenreList: GenreModal[] | any,
 }
 function App(props: AppProps) {
     useEffect(() => {
-        props.fetchGenre();
+        if (props.getGenreList.length == 0) {
+            props.fetchGenre();
+        }
     }, []);
     return (
         <div className="App">
@@ -22,6 +27,7 @@ function App(props: AppProps) {
 }
 function mapStateToProps(state: any) {
     return {
+        getGenreList: getGenreListSelector(state),
     };
 }
 function mapDispatchToProps(dispatch: any) {

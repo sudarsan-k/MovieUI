@@ -77,7 +77,7 @@ const SearchDetails = (props: MovieDetailsProps | any) => {
                     <label className='labelTabMovie'>Search Results for {location.state.search.searchText}</label>
                 </div>
             </div>
-            <div >
+            <div className='backroundParent'>
                 {movieList.length > 0 && errorMessage.length == 0 ? (
                     <MovieListComponent
                         movieList={movieList}
