@@ -1,6 +1,6 @@
 import React from 'react'
 import "../../assets/style/home.css"
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { MovieList, LoadFn } from '../../modals/Modals';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { tabData } from '../../assets/common/Common';
@@ -19,7 +19,8 @@ type MovieListProps = {
 
 const MovieListComponent = (props: MovieListProps) => {
     const { loading, loadDataHandler, movieList, tabIndex, pageIndex, searchFlag } = props
-
+    const [isHovering, setIsHovering] = useState<boolean>(false);
+    const [hoverIndex, setHoverIndex] = useState<number | null>(null)
     const navigate = useNavigate();
     const location = useLocation()
     const handleScroll = () => {
@@ -35,7 +36,15 @@ const MovieListComponent = (props: MovieListProps) => {
             }
         }
     };
+    const handleMouseOver = (index: number) => {
+        setIsHovering(true);
+        setHoverIndex(index);
+    };
 
+    const handleMouseOut = (index: number) => {
+        setIsHovering(false);
+        setHoverIndex(index);
+    };
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
@@ -47,36 +56,48 @@ const MovieListComponent = (props: MovieListProps) => {
         <div className='cardParent' id='cardParent'>
             {
                 movieList.map((data, index) => (
-                    <div className='card' key={index} onClick={(e) => {
-                        navigate(`/movieDetail/${data.id}`, { state: { id: data.id } });
-                    }}>
-                        <LazyLoadImage src={`${imageURL}/${data.poster_path}`}
-                            width="100%"
-                            height={'150px'}
-                            className='imageScreen'
-                            alt="Image Alt"
-                        />
-                        <div className='contentCard fontStyles'>
-                            <h2 > {data.title}</h2>
-                            <div>
-                                <label><strong>Genre</strong></label>
-                                <p>{data.genreList}</p>
-                            </div>
-                            <div>
-                                <label><strong>Release Data</strong></label>
-                                <p>{data.release_date}</p>
-                            </div>
-                            <div className='voteDiv'>
-                                <div >
-                                    <label><strong>Voter Average - </strong></label>
-                                    <label>{data.vote_average}</label>
+                    <div key={index}
+                        onMouseOver={() => handleMouseOver(index)}
+                        onMouseOut={() => handleMouseOut(index)}
+                        onClick={(e) => {
+                            navigate(`/movieDetail/${data.id}`, { state: { id: data.id } });
+                        }}>
+                        {isHovering && index === hoverIndex ? (<div className='card'>
+                            <LazyLoadImage src={`${imageURL}/${data.poster_path}`}
+                                width="100%"
+                                height={'150px'}
+                                className='imageScreen'
+                                alt="Image Alt"
+                            />
+                            <div className='contentCard fontStyles'>
+                                <h2 > {data.title}</h2>
+                                <div>
+                                    <label><strong>Genre</strong></label>
+                                    <p>{data.genreList}</p>
                                 </div>
                                 <div>
-                                    <label><strong>Voter Count - </strong></label>
-                                    <label>{data.vote_count}</label>
+                                    <label><strong>Release Date</strong></label>
+                                    <p>{data.release_date}</p>
+                                </div>
+                                <div className='voteDiv'>
+                                    <div >
+                                        <label><strong>Average - </strong></label>
+                                        <label>{data.vote_average}</label>
+                                    </div>
+                                    <div>
+                                        <label><strong>Count - </strong></label>
+                                        <label>{data.vote_count}</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>) : (<div className='card-hover'>
+                            <LazyLoadImage src={`${imageURL}/${data.poster_path}`}
+
+                                className='imageScreen-hover'
+                                alt="Image Alt"
+                            />
+                            <div className='contentCard fontStyles'>
+                                <h2 > {data.title}</h2></div></div>)}
                     </div>
                 )
                 )

@@ -40,7 +40,7 @@ const SearchDetails = (props: MovieDetailsProps | any) => {
                     for (let j: number = 0, len: number = movies[i].genre_ids.length; len > j; j++) {
                         let name: string | any = getGenreList?.find((x: GenreModal) => x.id === movies[i].genre_ids[j])?.name;
                         if (name !== null || name !== undefined) {
-                            movies[i].genreList += name + (j === len - 1 ? "" : ",  ");
+                            movies[i].genreList += name + (j === len - 1 ? "" : " - ");
                         }
                     }
                 }

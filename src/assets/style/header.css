@@ -1,7 +1,7 @@
 .inputDiv{    
     margin-left: 950px;
     position: relative;
-    bottom: 30px;
+    bottom: 55px;
 }
 .header{
     position: fixed;
@@ -12,7 +12,7 @@
 }
 
 .headerLabel {
-    top: 20%;
+    top: 10%;
     position: relative;
     font-size: 3rem;
 }
@@ -48,4 +48,10 @@
 }
 .buttonFav:hover {
     box-shadow: 0 4px 12px 12px rgba(242, 242, 242, 0.2);
+}
+
+.header-img{
+    width: 250px;
+    height: 80px;
+    top: 10px;
 }

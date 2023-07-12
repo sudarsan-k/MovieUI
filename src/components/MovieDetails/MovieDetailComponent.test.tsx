@@ -13,7 +13,7 @@ jest.mock("react-router-dom", () => ({
 const mockCallback = jest.fn();
 describe("MovieDetail Component", () => {
 
-    test('renders  movieDetails page with mock data', () => {
+    test('Renders  movieDetails page with mock data', () => {
         render(<MovieDetailComponent movieDetail={mockMovieDetailData}
             genreData={mockGenreData} languageData={"English"}
             favouriteHandler={mockCallback} buttonFlag={false} />);
@@ -29,18 +29,39 @@ describe("MovieDetail Component", () => {
         expect(favourite).toBeInTheDocument();
     });
 
-    test('renders changing button text', () => {
+    test('Renders changing button text', () => {
         render(<MovieDetailComponent movieDetail={mockMovieDetailData}
             genreData={mockGenreData} languageData={"English"}
             favouriteHandler={mockCallback} buttonFlag={true} />);
         const favourite = screen.getByText('Remove From Favourites');
         expect(favourite).toBeInTheDocument();
     });
-    test('button should be clicked once', () => {
+    test('Button should be clicked once', () => {
         render(<MovieDetailComponent movieDetail={mockMovieDetailData}
             genreData={mockGenreData} languageData={"English"}
             favouriteHandler={mockCallback} buttonFlag={false} />);
         fireEvent.click(screen.getByText('Add To Favourites'));
         expect(mockCallback).toHaveBeenCalledTimes(1);
     });
+    test('Triggering add to favoutites button', () => {
+        render(<MovieDetailComponent movieDetail={mockMovieDetailData}
+            genreData={mockGenreData} languageData={"English"}
+            favouriteHandler={mockCallback} buttonFlag={false} />);
+        fireEvent.click(screen.getByText('Add To Favourites'));
+        setTimeout(() => {
+            const favourite = screen.getByText('Remove From Favourites');
+            expect(favourite).toBeInTheDocument();
+        });
+    });
+    test('Triggering Remove from favoutites button', () => {
+        render(<MovieDetailComponent movieDetail={mockMovieDetailData}
+            genreData={mockGenreData} languageData={"English"}
+            favouriteHandler={mockCallback} buttonFlag={true} />);
+        fireEvent.click(screen.getByText('Remove From Favourites'));
+        setTimeout(() => {
+            const favourite = screen.getByText('Add To Favourites');
+            expect(favourite).toBeInTheDocument();
+        });
+    });
+
 });

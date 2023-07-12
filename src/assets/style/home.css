@@ -40,12 +40,28 @@
     border-radius: 1rem;
     margin-top: 2rem;
 }
+.card-hover {
+    width: 335px;
+    height: 350px;
+    box-shadow: 0 4px 8px 0 rgba(242, 242, 242, 0.2);
+    transition: 0.3s;
+    padding: 1rem;
+    border: none;
+    border-radius: 1rem;
+    margin-top: 2rem;
+}
 .card:hover {
     box-shadow: 0 4px 16px 16px rgba(242, 242, 242, 0.2);
   }
 .imageScreen{
     width: 45%;
     height: 150px;
+    border-radius: 0.5rem;
+}
+.imageScreen-hover{
+
+    width: 60%;
+    height: 250px;
     border-radius: 0.5rem;
 }
 .fontStyles{
@@ -73,4 +89,6 @@
 }
 .backroundParent{
     background-color: #222b31;
+    min-height: 100%;
+    height: 100%;
 }

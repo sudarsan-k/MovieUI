@@ -4,11 +4,13 @@ import "../../assets/style/header.css"
 import "../../assets/style/movie.css"
 import { useEffect, useState } from 'react'
 import { MovieList, LoadFn } from '../../modals/Modals';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import "../../assets/style/loader.css"
+import logo from "../../assets/images/logo.png"
 export type HeaderProps = {
 }
 const Header = (props: HeaderProps | any) => {
+    const location = useLocation();
     const navigate = useNavigate();
     const [searchText, setSearchText] = useState<string>('')
     const [testFlag, setTestFlag] = useState<boolean>(false)
@@ -18,7 +20,7 @@ const Header = (props: HeaderProps | any) => {
             navigate(`/search/${searchText}`, { state: { search: { searchText } } });
             setTestFlag(false);
         }
-    }, [searchText]);
+    }, [searchText, testFlag]);
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         clearTimeout(timerId);
@@ -35,11 +37,12 @@ const Header = (props: HeaderProps | any) => {
                 <button className='buttonFav' onClick={(e) => {
                     navigate('/favourite')
                 }}>Go To Favourites</button>
-                <label className='labelTab headerLabel' onClick={(e) => {
+                <img src={logo} className='header-img headerLabel' onClick={(e) => {
                     navigate('/')
-                }}>Movie App</label>
+                }} />
+
                 <div className='inputDiv'>
-                    <input type="search" className='inputText' onChange={changeHandler} placeholder="    Search.." name="search" />
+                    <input type="search" className='inputText' defaultValue={location.state?.search?.searchText} onChange={changeHandler} placeholder="    Search.." name="search" />
                 </div>
             </div>
         </div >

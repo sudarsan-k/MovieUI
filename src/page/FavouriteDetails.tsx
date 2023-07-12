@@ -34,7 +34,7 @@ const FavouriteDetails = (props: MovieDetailsProps | any) => {
                 for (let j: number = 0, len: number = movies[i].genres.length; len > j; j++) {
                     let name: string | any = movies[i].genres[j].name;
                     if (name !== null || name !== undefined) {
-                        movies[i].genreList += name + (j === len - 1 ? "" : ",  ");
+                        movies[i].genreList += name + (j === len - 1 ? "" : " - ");
                     }
                 }
             }
