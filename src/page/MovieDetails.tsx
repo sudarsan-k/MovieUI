@@ -15,7 +15,7 @@ import { updateFavourites, removeFavourites } from '../redux/action';
 import MovieDetailComponent from '../components/MovieDetails/MovieDetailComponent';
 import ErrorComponent from '../components/ErrorComponent/ErrorComponent';
 
-export type MovieDetailsProps = {
+type MovieDetailsProps = {
     movieList: MovieList[];
     loadDataHandler: LoadFn;
     loading: boolean;

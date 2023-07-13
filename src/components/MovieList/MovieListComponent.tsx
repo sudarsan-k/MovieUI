@@ -7,6 +7,7 @@ import { tabData } from '../../assets/common/Common';
 import "../../assets/style/loader.css"
 import { useNavigate, useLocation } from 'react-router-dom';
 import { imageURL } from '../../api/index'
+
 type MovieListProps = {
     movieList: MovieList[];
     loadDataHandler: LoadFn;
@@ -22,7 +23,10 @@ const MovieListComponent = (props: MovieListProps) => {
     const [isHovering, setIsHovering] = useState<boolean>(false);
     const [hoverIndex, setHoverIndex] = useState<number | null>(null)
     const navigate = useNavigate();
-    const location = useLocation()
+    const location = useLocation();
+
+
+    //Handling vitual scrolling feature here based on the scrolltop, scrollheight, clientheight
     const handleScroll = () => {
         const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
         if (scrollTop + clientHeight >= scrollHeight - 100 && !loading) {
@@ -36,16 +40,17 @@ const MovieListComponent = (props: MovieListProps) => {
             }
         }
     };
+    //Handling mouse hover functionality
     const handleMouseOver = (index: number) => {
         setIsHovering(true);
         setHoverIndex(index);
     };
-
+    //Handling mouse out functionality
     const handleMouseOut = (index: number) => {
         setIsHovering(false);
-        setHoverIndex(index);
     };
     useEffect(() => {
+        // binding the events for virtual scroll feature
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);

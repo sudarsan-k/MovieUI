@@ -4,7 +4,7 @@ import "../../assets/style/loader.css"
 import { MovieList } from '../../modals/Modals'
 import { imageURL } from '../../api/index'
 
-export type MovieComponentProps = {
+type MovieComponentProps = {
     languageData: string;
     genreData: string;
     movieDetail: MovieList;

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { GenreModal } from './modals/Modals';
 import { fetchGenre } from './redux/action';
-import Router from './Router';
+import Router from './Router/Router';
 import { getGenreListSelector } from './redux/selector';
 export type AppProps = {
     fetchGenre: any,

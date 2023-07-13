@@ -13,7 +13,8 @@ import MovieListComponent from '../components/MovieList/MovieListComponent';
 import { getSearchDetails } from '../api/sdk';
 import ErrorComponent from '../components/ErrorComponent/ErrorComponent';
 
-export type MovieDetailsProps = {
+
+type SearchDetailsProps = {
     movieList: MovieList[];
     loadDataHandler: LoadFn;
     loading: boolean;
@@ -21,18 +22,21 @@ export type MovieDetailsProps = {
     setPageIndex: (value: number) => void;
     pageIndex: number;
 }
-const SearchDetails = (props: MovieDetailsProps | any) => {
+
+const SearchDetails = (props: SearchDetailsProps | any) => {
     const { getGenreList } = props;
     const location = useLocation();
-    const [tabIndex, setTabIndex] = useState<number>(0);
+    const [tabIndex] = useState<number>(0);
     const [pageIndex, setPageIndex] = useState<number>(1);
     const [movieList, setMovieList] = useState<MovieList[]>([])
     const [errorMessage, setErrorMessage] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false);
+
+
+    // Handling the movie datalist functionality for seached data
     const loadDataHandler = (data: TabList | any, page: number, search: boolean = true) => {
         if (typeof getGenreList !== 'string') {
             setLoading(true)
-
             getSearchDetails(data, page).then((res: any) => {
                 let movies: MovieList[] = res.results;
                 for (let i: number = 0, len: number = movies.length; len > i; i++) {
@@ -68,6 +72,7 @@ const SearchDetails = (props: MovieDetailsProps | any) => {
         }
     }
     useEffect(() => {
+        //Handling searching based on the location state.
         const query = location.state.search.searchText;
         if (getGenreList.length > 0) {
             loadDataHandler(query, 1, true);

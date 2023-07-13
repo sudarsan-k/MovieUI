@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect'
 import Header from './Header';
-import { mockMovieDetailData, mockGenreData } from '../../assets/common/mockData';
 const mockedUsedNavigate = jest.fn();
 const mockedUsedLocation = jest.fn();
 
@@ -12,7 +11,6 @@ jest.mock("react-router-dom", () => ({
     useLocation: () => mockedUsedLocation,
 }));
 
-const mockCallback = jest.fn();
 describe("Header Component", () => {
 
     test('Renders  Header component ', () => {

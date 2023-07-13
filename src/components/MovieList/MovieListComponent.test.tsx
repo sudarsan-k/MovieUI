@@ -1,8 +1,8 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect'
 import MovieListComponent from './MovieListComponent';
-import { mockMovieDetailData, mockGenreData, mockDataMovieList } from '../../assets/common/mockData';
+import { mockMovieDetailData, mockDataMovieList } from '../../assets/common/mockData';
 const mockedUsedNavigate = jest.fn();
 const mockedUsedLocation = jest.fn();
 

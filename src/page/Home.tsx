@@ -9,13 +9,13 @@ import { getTabList } from '../api/sdk';
 import MovieListComponent from '../components/MovieList/MovieListComponent';
 import Header from '../components/Header/Header';
 import ErrorComponent from '../components/ErrorComponent/ErrorComponent';
-export type HomeProps = {
+
+type HomeProps = {
     getGenreList: GenreModal[] | any
 }
 
 const Home = (props: HomeProps) => {
     const { getGenreList } = props;
-
     const [initialFocus, setInitialFocus] = useState<boolean>(true);
     const [tabIndex, setTabIndex] = useState<number>(0);
     const [pageIndex, setPageIndex] = useState<number>(1);
@@ -23,6 +23,7 @@ const Home = (props: HomeProps) => {
     const [errorMessage, setErrorMessage] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false);
 
+    // Handling the movies datalist  functionality
     const loadDataHandler = (data: TabList, page: number) => {
         if (typeof getGenreList !== 'string') {
             setLoading(true)
@@ -56,12 +57,16 @@ const Home = (props: HomeProps) => {
         }
     }
     useEffect(() => {
+        //Handleing the initial load funcionality
         if (getGenreList.length > 0) {
             loadDataHandler(tabData[0], pageIndex);
-            window.scrollTo(0, 0);
+            setTimeout(() => {
+                window.scroll(0, 0)
+            }, 200);
         }
     }, [getGenreList]);
 
+    // Handling the tab click functionality
     const tabHandler = (event: React.MouseEvent<HTMLLabelElement, MouseEvent>, data: TabList) => {
         if (tabIndex !== data.id) {
             setTabIndex(data.id);

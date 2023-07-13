@@ -10,15 +10,15 @@ import { getFavouritesSelector } from '../redux/selector';
 import MovieListComponent from '../components/MovieList/MovieListComponent';
 import ErrorComponent from '../components/ErrorComponent/ErrorComponent';
 
-export type MovieDetailsProps = {
+type FavouriteDetailsProps = {
     getFavouriteList: MovieList[];
     loading: boolean;
     tabIndex: number;
     pageIndex: number;
 }
-const FavouriteDetails = (props: MovieDetailsProps | any) => {
+const FavouriteDetails = (props: FavouriteDetailsProps | any) => {
     const { getFavouriteList } = props;
-    const [tabIndex, setTabIndex] = useState<number>(0);
+    const [tabIndex] = useState<number>(0);
     const [pageIndex, setPageIndex] = useState<number>(1);
     const [movieList, setMovieList] = useState<MovieList[]>(getFavouriteList)
     const [errorMessage, setErrorMessage] = useState<string>('')
@@ -26,6 +26,8 @@ const FavouriteDetails = (props: MovieDetailsProps | any) => {
 
 
     useEffect(() => {
+
+        // Handling the favourite movie list functionality
         if (getFavouriteList.length > 0) {
             setLoading(true)
             let movies: MovieList[] = [...getFavouriteList];
