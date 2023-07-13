@@ -13,7 +13,7 @@ export type AppProps = {
 }
 function App(props: AppProps) {
     useEffect(() => {
-        if (props.getGenreList.length == 0) {
+        if (props.getGenreList.length == 0 || typeof props.getGenreList == 'string') {
             props.fetchGenre();
         }
     }, []);

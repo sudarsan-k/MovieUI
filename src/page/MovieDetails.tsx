@@ -34,6 +34,8 @@ const MovieDetails = (props: MovieDetailsProps | any) => {
     const [buttonFlag, setButtonFlag] = useState<boolean>(false)
 
     useEffect(() => {
+
+        //Handling the movie details functionality
         let id = location.state.id;
         setLoading(true)
         if (id !== 0) {
