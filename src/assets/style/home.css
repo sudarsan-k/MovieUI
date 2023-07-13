@@ -21,7 +21,7 @@
     margin-top: 2rem;
 }
 .labelTab:hover{
-    color: black;
+    color:#00FC87;
     height: 40px;
 }
 .labelTab:focus{
