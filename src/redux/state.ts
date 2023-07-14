@@ -1,6 +1,6 @@
-import { GenreModal, MovieList } from "../modals/Modals";
+import { GenreModel, MovieList } from "../models/Models";
 export  interface MovieState {
-    genreList: GenreModal[] | string;
+    genreList: GenreModel[] | string;
     favourites: MovieList[]
   }
   

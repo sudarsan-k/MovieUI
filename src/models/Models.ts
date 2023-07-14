@@ -3,7 +3,7 @@ export interface TabList {
     name: string
     apiList: string
 }
-export interface GenreModal {
+export interface GenreModel {
     id: number,
     name: string
 }
@@ -25,7 +25,7 @@ export interface MovieList{
     vote_count:number,
     popularity: number,
     release_date: string,
-    genres: GenreModal[],
+    genres: GenreModel[],
     status: string,
     spoken_languages: SpokenLanguage[],
     tagline: string

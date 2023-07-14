@@ -1,4 +1,4 @@
-import { GenreModal,MovieList } from "../modals/Modals";
+import { GenreModel,MovieList } from "../models/Models";
 
 
 export const FETCH_GENRELIST = 'FETCH_GENRELIST';
@@ -9,7 +9,7 @@ export const REMOVE_FAVOURITES = 'REMOVE_FAVOURITES';
 
 export const fetchGenre = ( ) =>({type: FETCH_GENRELIST})
 
-export const fetchGenreList = (type: string , payload: GenreModal[] | string ) => ({
+export const fetchGenreList = (type: string , payload: GenreModel[] | string ) => ({
     type,
     payload
   });

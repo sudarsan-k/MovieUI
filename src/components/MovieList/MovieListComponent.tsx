@@ -1,7 +1,7 @@
 import React from 'react'
 import "../../assets/style/home.css"
 import { useEffect, useState } from 'react'
-import { MovieList, LoadFn } from '../../modals/Modals';
+import { MovieList, LoadFn } from '../../models/Models';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { tabData } from '../../assets/common/Common';
 import "../../assets/style/loader.css"

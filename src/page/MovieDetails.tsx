@@ -2,7 +2,7 @@ import React from 'react'
 import "../assets/style/home.css"
 import "../assets/style/movie.css"
 import { useEffect, useState } from 'react'
-import { MovieList, LoadFn } from '../modals/Modals';
+import { MovieList, LoadFn } from '../models/Models';
 import { useLocation } from 'react-router-dom';
 import "../assets/style/loader.css";
 import { connect } from 'react-redux';

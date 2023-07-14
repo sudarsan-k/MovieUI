@@ -1,7 +1,7 @@
 import React from 'react'
 import "../../assets/style/movie.css"
 import "../../assets/style/loader.css"
-import { MovieList } from '../../modals/Modals'
+import { MovieList } from '../../models/Models'
 import { imageURL } from '../../api/index'
 
 type MovieComponentProps = {

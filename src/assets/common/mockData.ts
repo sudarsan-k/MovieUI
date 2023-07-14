@@ -1,5 +1,5 @@
 
-import { TabList, MovieList } from '../../modals/Modals'
+import { TabList, MovieList } from '../../models/Models'
 export const  mockMovieDetailData: MovieList  | any = {
     "backdrop_path": "/9n2tJBplPbgR2ca05hS5CKXwP2c.jpg",
     "genres": [

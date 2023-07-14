@@ -2,7 +2,7 @@ import React from 'react'
 import "../assets/style/home.css"
 import "../assets/style/movie.css"
 import { useEffect, useState } from 'react'
-import { MovieList } from '../modals/Modals';
+import { MovieList } from '../models/Models';
 import "../assets/style/loader.css";
 import { connect } from 'react-redux';
 import Header from '../components/Header/Header';

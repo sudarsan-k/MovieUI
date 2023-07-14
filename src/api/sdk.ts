@@ -1,10 +1,10 @@
 import {AxiosResponse } from "axios";
 import axios from "axios";
 import {movieURL, AUTH_TOKEN, genreURL, searchURL} from './index'
-import { GenreModal, MovieList } from "../modals/Modals";
+import { GenreModel, MovieList } from "../models/Models";
 
-  export const getGenreList = async(): Promise<GenreModal[]>  => {
-    const response: AxiosResponse<GenreModal[]> =  await axios.get<GenreModal[]>(`${genreURL}/movie/list?api_key=${AUTH_TOKEN}`);
+  export const getGenreList = async(): Promise<GenreModel[]>  => {
+    const response: AxiosResponse<GenreModel[]> =  await axios.get<GenreModel[]>(`${genreURL}/movie/list?api_key=${AUTH_TOKEN}`);
     return response.data;
 };
   

@@ -4,14 +4,14 @@ import { tabData } from '../assets/common/Common'
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { getGenreListSelector } from '../redux/selector'
-import { GenreModal, TabList, MovieList } from '../modals/Modals';
+import { GenreModel, TabList, MovieList } from '../models/Models';
 import { getTabList } from '../api/sdk';
 import MovieListComponent from '../components/MovieList/MovieListComponent';
 import Header from '../components/Header/Header';
 import ErrorComponent from '../components/ErrorComponent/ErrorComponent';
 
 type HomeProps = {
-    getGenreList: GenreModal[] | any
+    getGenreList: GenreModel[] | any
 }
 
 const Home = (props: HomeProps) => {
@@ -32,7 +32,7 @@ const Home = (props: HomeProps) => {
                 for (let i: number = 0, len: number = movies.length; len > i; i++) {
                     movies[i].genreList = "";
                     for (let j: number = 0, len: number = movies[i].genre_ids.length; len > j; j++) {
-                        let name: string | any = getGenreList?.find((x: GenreModal) => x.id === movies[i].genre_ids[j])?.name;
+                        let name: string | any = getGenreList?.find((x: GenreModel) => x.id === movies[i].genre_ids[j])?.name;
                         if (name !== null || name !== undefined) {
                             movies[i].genreList += name + (j === len - 1 ? "" : "  -  ");
                         }

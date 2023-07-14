@@ -1,5 +1,5 @@
 
-import { TabList } from '../../modals/Modals'
+import { TabList } from '../../models/Models'
 export const tabData: TabList[] = [
     { id: 0, name: "Now Playing", apiList: 'now_playing' },
     { id: 1, name: "Popular", apiList: 'popular' },

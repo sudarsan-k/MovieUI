@@ -2,13 +2,13 @@ import React from 'react'
 import "../assets/style/home.css"
 import "../assets/style/movie.css"
 import { useEffect, useState } from 'react'
-import { MovieList, LoadFn, TabList } from '../modals/Modals';
+import { MovieList, LoadFn, TabList } from '../models/Models';
 import { useLocation } from 'react-router-dom';
 import "../assets/style/loader.css";
 import { connect } from 'react-redux';
 import Header from '../components/Header/Header';
 import { getGenreListSelector } from '../redux/selector';
-import { GenreModal } from '../modals/Modals';
+import { GenreModel } from '../models/Models';
 import MovieListComponent from '../components/MovieList/MovieListComponent';
 import { getSearchDetails } from '../api/sdk';
 import ErrorComponent from '../components/ErrorComponent/ErrorComponent';
@@ -42,7 +42,7 @@ const SearchDetails = (props: SearchDetailsProps | any) => {
                 for (let i: number = 0, len: number = movies.length; len > i; i++) {
                     movies[i].genreList = "";
                     for (let j: number = 0, len: number = movies[i].genre_ids.length; len > j; j++) {
-                        let name: string | any = getGenreList?.find((x: GenreModal) => x.id === movies[i].genre_ids[j])?.name;
+                        let name: string | any = getGenreList?.find((x: GenreModel) => x.id === movies[i].genre_ids[j])?.name;
                         if (name !== null || name !== undefined) {
                             movies[i].genreList += name + (j === len - 1 ? "" : " - ");
                         }
